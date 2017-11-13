@@ -25,7 +25,7 @@ p {
   color: #666666;
 }
 
-label {
+label, .heading {
   font-size: 1.6em;
   font-weight: bold;
   margin-bottom: 15px;
@@ -46,4 +46,23 @@ label {
 
 .display-none {
   display: none;
+}
+
+.list {
+  padding: 0;
+  margin: 0;
+  font-size: 1.1em;
+  list-style: none;
+  max-width: 30%;
+}
+
+.list li {
+  padding: 0;
+}
+
+.list li a {
+  display: block;
+  padding: 10px 12px;
+  border-bottom: 1px solid #efefef;
+  line-height: 100%;
 }

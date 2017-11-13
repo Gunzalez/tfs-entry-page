@@ -26,8 +26,11 @@ const listItem = (id, baseUrl) => {
 const List = (props) => (
     <div className="form">
         <div className="container">
-            <h1>Click on one of the Config IDs below</h1>
-            <ul>
+            <h3 className="heading">List of Config IDs</h3>
+            <p className="helper">Click on a config ID from the list</p>
+            <p className='helper'>This will launch the demo site in a new window/tab</p>
+            <hr/>
+            <ul className="list">
                 { getList().map(item => { return listItem(item, props.url) }) }
             </ul>
         </div>

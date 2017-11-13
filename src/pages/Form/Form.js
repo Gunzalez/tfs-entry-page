@@ -54,7 +54,7 @@ const Form = (props) => (
     <div className="form">
         <div className="container">
             <form onSubmit={launchSite} autoComplete="off">
-                <label className="label">Config ID</label>
+                <label className="label">Config ID form</label>
                 <p className="helper">Enter in just the config ID eg. <span>2hwH09m</span></p>
                 <p className="helper">This will launch the demo site in a new window or tab</p>
                 <p className="error display-none">Please provide a config ID to progress</p>
