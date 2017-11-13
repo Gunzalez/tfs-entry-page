@@ -1,0 +1,26 @@
+@import "/assets/fonts";
+
+.header {
+  padding: 15px 0;
+  border-bottom: 1px solid #cccccc;
+}
+
+.form {
+  padding: 20px 0;
+}
+
+.helper {
+  color: red;
+}
+
+label.span {
+  color: #cccccc;
+}
+
+.visuallyHidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px; width: 1px;
+  margin: -1px; padding: 0; border: 0;
+}
