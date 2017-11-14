@@ -1,5 +1,3 @@
-@import "/assets/fonts";
-
 .header {
   padding: 15px 0;
   border-bottom: 1px solid #cccccc;
@@ -26,9 +24,13 @@ p {
 }
 
 label, .heading {
-  font-size: 1.6em;
+  font-size: 2.2em;
   font-weight: bold;
   margin-bottom: 15px;
+}
+
+.heading {
+  font-size: 1.5em;
 }
 
 .helper span {
@@ -49,11 +51,14 @@ label, .heading {
 }
 
 .list {
+  padding: 20px 0;
+}
+
+.list ul {
   padding: 0;
   margin: 0;
   font-size: 1.1em;
   list-style: none;
-  max-width: 30%;
 }
 
 .list li {
@@ -65,4 +70,45 @@ label, .heading {
   padding: 10px 12px;
   border-bottom: 1px solid #efefef;
   line-height: 100%;
+}
+
+.configId {
+  width: 280px;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #999999;
+}
+
+.btn[disabled],
+.btn[disabled]:hover {
+  background: #cccccc;
+  cursor: default;
+}
+
+.baseUrl:focus {
+  box-shadow: none;
+  outline: none;
+  color: #111111;
+}
+
+.likeLabel {
+  color: #999999;
+}
+
+.baseUrl {
+  margin-bottom: 5px;
+  width: 100%;
+  padding: 3px 5px;
+  color: #999999;
+}
+
+.clearList {
+  text-align: right;
 }
