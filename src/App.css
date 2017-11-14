@@ -1,3 +1,5 @@
+@import "../src/assets/fonts/fonts.css";
+
 .header {
   padding: 15px 0;
   border-bottom: 1px solid #cccccc;
@@ -27,6 +29,7 @@ label, .heading {
   font-size: 2.2em;
   font-weight: bold;
   margin-bottom: 15px;
+  font-family: 'TYB';
 }
 
 .heading {

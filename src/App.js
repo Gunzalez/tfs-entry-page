@@ -157,7 +157,7 @@ class App extends Component {
                             <div className="col-12 col-sm-6 col-md-8">
                                 <div className="form">
                                     <form onSubmit={this.launchSite.bind(this)} autoComplete="off">
-                                        <label className="label">Config ID form</label>
+                                        <label className="label">Config ID test page</label>
                                         <p className="helper">Type in just the config ID eg. <span>2hwH09m</span></p>
                                         <p className="helper">This will launch the demo site in a new window or tab</p>
                                         <p className="error display-none">Please provide a config ID to progress</p>
@@ -168,7 +168,7 @@ class App extends Component {
                                     </form>
                                 </div>
                                 <List title={this.state.locals} items={this.state.localConfigIds} url={this.state.url} />
-                                { this.state.localConfigIds.length > 0 ? <p className="clearList"><a href="" onClick={this.clearLocalConfigIds.bind(this)}>Clear</a> recent list here.</p> : null }
+                                { this.state.localConfigIds.length > 0 ? <p className="clearList"><a href="" onClick={this.clearLocalConfigIds.bind(this)}>Clear</a> recent list.</p> : null }
                             </div>
                             <div className="col-6 col-md-4">
                                 <List title={this.state.predefined} sub={true} items={this.state.presetConfigIds} url={this.state.url} />

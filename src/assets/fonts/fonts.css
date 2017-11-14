@@ -1,0 +1,19 @@
+@font-face{
+    src:url(toyota_bd.ttf);
+    font-family: 'TYB';
+}
+
+@font-face{
+    src:url(toyota_rg.ttf);
+    font-family: 'TYR';
+}
+
+@font-face{
+    src:url(OpenSans-Regular.ttf);
+    font-family: 'OSR';
+}
+
+@font-face{
+    src:url(OpenSans-Bold.ttf);
+    font-family: 'OSB';
+}
