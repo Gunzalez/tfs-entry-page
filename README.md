@@ -7,4 +7,4 @@ Simply clone the repo and use the following commands on your terminal
 - npm install
 - npm start
 
-Data for the project can be found on /data, for editing Environments and Config ID examples
+See /data for content, use for editing Environments and Config ID examples
