@@ -113,13 +113,17 @@ label, .heading {
   color: #666666;
 }
 
+.btn-submit {
+  margin-bottom: 30px;
+}
 
 .list li a:hover {
   background: #d7d7d7;
   color: #000000;
 }
 
-.configId {
+.configId,
+.environment {
   width: 280px;
   display: block;
   margin-bottom: 15px;
@@ -150,12 +154,14 @@ label, .heading {
 }
 
 .baseUrl {
-  margin-bottom: 5px;
-  width: 100%;
-  padding: 3px 5px;
   color: #999999;
 }
 
 .clearList {
   text-align: right;
 }
+
+.form-control {
+  margin-bottom: 15px;
+}
+

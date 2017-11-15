@@ -10,11 +10,13 @@ class App extends Component {
     constructor(props){
         super(props);
         this.state = {
-            url: 'http://18.195.38.29/',
+            url: "",
+            environments: [],
             presetConfigIds: [],
             localConfigIds: [],
-            predefined: "Preset list",
-            locals: "5 most recent config IDs"
+            predefined: "Example Config IDs",
+            locals: "5 most recent config IDs",
+
         };
     }
 
@@ -42,6 +44,22 @@ class App extends Component {
                 })
             }
         }
+
+        let envUrl = '/data/environments.json';
+        fetch(envUrl)
+            .then(response => {
+                return response.json()
+            })
+            .then(array => {
+                let firstENV = array[0].url;
+                this.setState({
+                    environments: array,
+                    url: firstENV
+                });
+            })
+            .catch(function(err){
+                console.log(err);
+            });
     }
 
     launchSite(event){
@@ -66,6 +84,7 @@ class App extends Component {
             // open new window
             window.open(fullUrl);
 
+            // add to local storage if not already in
             this.updateLocateList(configId);
 
             // reset values and states
@@ -111,7 +130,7 @@ class App extends Component {
                 localConfigIds = localStorage.getItem("localConfigIds").split('||');
             }
             let presetConfigIds = [];
-            this.state.presetConfigIds.map(configId => {
+            this.state.presetConfigIds.forEach(function (configId) {
                 presetConfigIds.push(configId.id)
             });
             if(localConfigIds.indexOf(configId) === -1 && presetConfigIds.indexOf(configId) === -1){
@@ -130,20 +149,29 @@ class App extends Component {
         }
     };
 
-    resetBaseUrl(event){
-        event.preventDefault();
-        window.location.reload();
-    }
-
     clearLocalConfigIds(event){
         event.preventDefault();
         if (typeof(Storage) !== "undefined") {
-
             localStorage.removeItem("localConfigIds");
             this.setState({
                 localConfigIds: []
             })
         }
+    };
+
+    onChangeSelect(event){
+        let $form = event.target.parentNode,
+            $select = event.target,
+            $baseUrl = $form["baseUrl"];
+
+        $baseUrl.value = $select.value;
+        this.setState({
+            url: $select.value
+        });
+    }
+
+    createListItem(item){
+        return <option key={item.url} value={item.url}>{item.name}</option>
     };
 
     render() {
@@ -158,16 +186,21 @@ class App extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-12 col-sm-6 col-md-8">
-                                <div className="form">
+                                <div classID="theForm" className="form">
                                     <form onSubmit={this.launchSite.bind(this)} autoComplete="off">
                                         <label className="label">Config ID test page</label>
+                                        <p className="likeLabel">Base Url (including http part)</p>
+                                        <input value={this.state.url} onChange={this.onChangeBaseUrl.bind(this)} name="baseUrl" className="form-control baseUrl" />
+                                        <select className="form-control environment" onChange={this.onChangeSelect.bind(this)}>
+                                            { this.state.environments.map((environment) => {
+                                                return this.createListItem(environment)
+                                            })}
+                                        </select>
                                         <p className="helper">Type in just the config ID eg. <span>2hwH09m</span></p>
                                         <p className="helper">This will launch the demo site in a new window or tab</p>
                                         <p className="error display-none">Please provide a config ID to progress</p>
                                         <input id="configId" onChange={this.onChangeHandler} name="configId" className="form-control configId" />
-                                        <button name="btn-submit" className="btn btn-default btn-submit" disabled>Launch</button><br /><br />
-                                        <p className="likeLabel">Base Url (including http part) | <a href="" onClick={this.resetBaseUrl}>Reset</a></p>
-                                        <input defaultValue={this.state.url} onChange={this.onChangeBaseUrl.bind(this)} name="baseUrl" className="baseUrl" />
+                                        <button name="btn-submit" className="btn btn-default btn-submit" disabled>Launch</button>
                                     </form>
                                 </div>
                                 <List title={this.state.locals} items={this.state.localConfigIds} url={this.state.url} />
