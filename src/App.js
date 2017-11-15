@@ -14,8 +14,8 @@ class App extends Component {
             environments: [],
             presetConfigIds: [],
             localConfigIds: [],
-            predefined: "Example Config IDs",
-            locals: "5 most recent config IDs",
+            predefined: "Config ID examples",
+            locals: "10 most recent config IDs",
 
         };
     }
@@ -129,15 +129,12 @@ class App extends Component {
             if(localStorage.getItem("localConfigIds") !== null){
                 localConfigIds = localStorage.getItem("localConfigIds").split('||');
             }
-            let presetConfigIds = [];
-            this.state.presetConfigIds.forEach(function (configId) {
-                presetConfigIds.push(configId.id)
-            });
-            if(localConfigIds.indexOf(configId) === -1 && presetConfigIds.indexOf(configId) === -1){
+
+            if(localConfigIds.indexOf(configId) === -1){
                 localConfigIds.unshift(configId);
 
                 if(localConfigIds.length > 5){
-                    let amountToRemove = localConfigIds.length - 5;
+                    let amountToRemove = localConfigIds.length - 10;
                     localConfigIds.splice(4, amountToRemove);
                 }
 
@@ -189,7 +186,6 @@ class App extends Component {
                                 <div classID="theForm" className="form">
                                     <form onSubmit={this.launchSite.bind(this)} autoComplete="off">
                                         <label className="label">Config ID test page</label>
-                                        <p className="likeLabel">Base Url (including http part)</p>
                                         <input value={this.state.url} onChange={this.onChangeBaseUrl.bind(this)} name="baseUrl" className="form-control baseUrl" />
                                         <select className="form-control environment" onChange={this.onChangeSelect.bind(this)}>
                                             { this.state.environments.map((environment) => {
@@ -204,7 +200,7 @@ class App extends Component {
                                     </form>
                                 </div>
                                 <List title={this.state.locals} items={this.state.localConfigIds} url={this.state.url} />
-                                { this.state.localConfigIds.length > 0 ? <p className="clearList"><a href="" onClick={this.clearLocalConfigIds.bind(this)}>Clear</a> recent list.</p> : null }
+                                { this.state.localConfigIds.length > 0 ? <p className="clearList"><a href="" onClick={this.clearLocalConfigIds.bind(this)}>Clear</a> this list.</p> : null }
                             </div>
                             <div className="col-6 col-md-4">
                                 <List title={this.state.predefined} sub={true} items={this.state.presetConfigIds} url={this.state.url} />
