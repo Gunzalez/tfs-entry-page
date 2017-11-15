@@ -7,6 +7,4 @@ Simply clone the repo and use the following commands on your terminal
 - npm install
 - npm start
 
-- Find preset list of Config IDs /data/configids.json
-- Find base url string in app.js, in the component state
-
+Data for the project can be found on /data, for editing Environments and Config ID examples
