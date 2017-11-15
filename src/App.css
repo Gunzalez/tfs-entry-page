@@ -73,6 +73,15 @@ label, .heading {
   padding: 10px 12px;
   border-bottom: 1px solid #efefef;
   line-height: 100%;
+  text-decoration: none;
+  transition: all 0.5s;
+  color: #666666;
+}
+
+
+.list li a:hover {
+  background: #d7d7d7;
+  color: #000000;
 }
 
 .configId {
