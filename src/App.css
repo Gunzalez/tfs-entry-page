@@ -5,6 +5,41 @@
   border-bottom: 1px solid #cccccc;
 }
 
+.list li a.compound {
+  width: 100%;
+  display: block;
+  overflow: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 14px;
+  position: relative;
+  border-bottom: 1px solid #cccccc;
+}
+
+.compound img {
+  float: right;
+}
+
+.text {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+}
+
+.text span {
+  display: block;
+}
+
+.compound span {
+  margin-bottom: 5px;
+}
+
+.compound span.id {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'TYB';
+}
+
 * {
   line-height: 120%;
 }

@@ -110,7 +110,11 @@ class App extends Component {
             if(localStorage.getItem("localConfigIds") !== null){
                 localConfigIds = localStorage.getItem("localConfigIds").split('||');
             }
-            if(localConfigIds.indexOf(configId) === -1 && this.state.presetConfigIds.indexOf(configId) === -1){
+            let presetConfigIds = [];
+            this.state.presetConfigIds.map(configId => {
+                presetConfigIds.push(configId.id)
+            });
+            if(localConfigIds.indexOf(configId) === -1 && presetConfigIds.indexOf(configId) === -1){
                 localConfigIds.unshift(configId);
 
                 if(localConfigIds.length > 5){

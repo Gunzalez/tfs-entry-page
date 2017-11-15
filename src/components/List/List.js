@@ -1,8 +1,16 @@
 import React from 'react';
 
-const displayItem = (i, id, baseUrl) => {
-    let url = baseUrl + id;
-    return <li key={i}><a href={url} target="_blank">{id}</a></li>
+const displayItem = (i, item, baseUrl) => {
+    if(typeof item === "object"){
+        return <li key={i}><a href={baseUrl + item.id} target="_blank" className="compound">{ drawImage(item.id, item.title)} <span className="text"><span className="id">{item.id}</span><span>{item.title}</span></span></a></li>
+    } else {
+        return <li key={i}><a href={baseUrl + item} target="_blank">{item}</a></li>
+    }
+};
+
+const drawImage = (configId, title) => {
+    let imgUrl = 'https://images.toyota-europe.com/configuration/' + configId + '/exterior-04.png?width=100&height=59';
+    return <img src={imgUrl} alt={title} />
 };
 
 const List = (props) => (
