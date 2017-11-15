@@ -13,7 +13,7 @@ class App extends Component {
             url: 'http://18.195.38.29/',
             presetConfigIds: [],
             localConfigIds: [],
-            predefined: "Predefined list",
+            predefined: "Preset list",
             locals: "5 most recent config IDs"
         };
     }
@@ -43,7 +43,6 @@ class App extends Component {
             }
         }
     }
-
 
     launchSite(event){
         // stop default action
