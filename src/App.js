@@ -239,7 +239,7 @@ class App extends Component {
                                         { this.state.localConfigIds.map(item => {
                                             return this.simpleListItem(item)
                                         })}
-                                        { this.state.localConfigIds.length < 1 ? <li>This section will list previous visits in your history</li> : null }
+                                        { this.state.localConfigIds.length < 1 ? <li>This section will list previous visits in your history, it's empty right now.</li> : null }
                                     </ul>
                                 </div>
 
