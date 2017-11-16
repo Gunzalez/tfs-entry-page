@@ -14,9 +14,7 @@ class App extends Component {
             url: "",
             environments: [],
             presetConfigIds: [],
-            localConfigIds: [],
-            predefined: "Config ID examples",
-            locals: "most recent config IDs",
+            localConfigIds: []
         };
     }
 
@@ -82,7 +80,7 @@ class App extends Component {
         if(configId.length > 0){
 
             // open new window
-            window.open(fullUrl);
+            window.location.assign(fullUrl);
 
             // add to local storage if not already in
             this.updateLocalHistoryList(fullUrl);
@@ -177,10 +175,6 @@ class App extends Component {
         return <li key={item}><a href={item} target="_blank">{item}</a></li>
     };
 
-    doStuff(thing){
-        alert(thing)
-    };
-
     render() {
         return (
             <div className="App">
@@ -236,7 +230,7 @@ class App extends Component {
 
                                 {/* List */}
                                 <div className="list simple">
-                                    <h3 className="heading">{ this.state.historyCount } { this.state.locals }</h3>
+                                    <h3 className="heading">{ this.state.historyCount } most recent config IDs</h3>
                                     <ul>
                                         { this.state.localConfigIds.map(item => {
                                             return this.simpleListItem(item)
@@ -252,7 +246,7 @@ class App extends Component {
                             <div className="col-6 col-md-4">
 
                                 {/* List component */}
-                                <List title={this.state.predefined} sub={true} items={this.state.presetConfigIds} url={this.state.url} action={this.doStuff.bind(this)} />
+                                <List items={this.state.presetConfigIds} url={this.state.url} />
 
                             </div>
                         </div>

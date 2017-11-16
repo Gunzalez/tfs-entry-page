@@ -1,7 +1,17 @@
 import React from 'react';
 
 const displayItem = (item, baseUrl) => {
-    return <li key={item.id}><a href={baseUrl + item.id} target="_blank" className="compound">{ drawImage(item.id, item.title)} <span className="text"><span className="id">{item.id}</span><span>{item.title}</span></span></a></li>
+    return (
+        <li key={item.id}>
+                <a href={baseUrl + item.id} className="compound">
+                { drawImage(item.id, item.title)}
+                <span className="text">
+                    <span className="id">{item.id}</span>
+                    <span>{item.title}</span>
+                </span>
+            </a>
+        </li>
+    )
 };
 
 const drawImage = (configId, title) => {
@@ -11,7 +21,7 @@ const drawImage = (configId, title) => {
 
 const List = (props) => (
     <div className="list detailed">
-        <h3>{ props.title }</h3>
+        <h3>Config ID examples</h3>
         <p>Click any preconfigured Config IDs to start the TFS project</p>
         <p>Environment currently set to:<br /><strong>{ props.url }</strong></p>
         <ul>
