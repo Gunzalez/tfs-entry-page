@@ -212,7 +212,6 @@ class App extends Component {
                                 </div>
                                 <div className="list simple">
                                     <h3 className="heading">{ this.state.historyCount } { this.state.locals }</h3>
-                                    <hr/>
                                     <ul>
                                         { this.state.localConfigIds.map(item => {
                                             return this.simpleListItem(item)

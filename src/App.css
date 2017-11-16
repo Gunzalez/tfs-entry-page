@@ -18,6 +18,8 @@
 
 .compound img {
   float: right;
+  min-height: 59px;
+  min-width: 100px;
 }
 
 .text {
@@ -99,15 +101,21 @@ label, .heading {
   margin-bottom: 15px;
 }
 
+
 .list ul {
   padding: 0;
   margin: 0;
-  font-size: 1.1em;
   list-style: none;
 }
 
 .list li {
   padding: 0;
+}
+
+.simple .heading {
+  border-bottom: 1px solid #cccccc;
+  padding-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .list li a {
@@ -116,6 +124,11 @@ label, .heading {
   line-height: 100%;
   text-decoration: underline;
   transition: all 0.5s;
+  display: block;
+}
+
+.list li a span.id  {
+  font-size: 1.5em;
 }
 
 .list.detailed li a {
@@ -136,6 +149,7 @@ label, .heading {
 
 .list.simple li a:hover {
   text-decoration: none;
+  color: #000000;
 }
 
 

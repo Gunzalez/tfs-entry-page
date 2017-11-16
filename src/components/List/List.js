@@ -1,7 +1,7 @@
 import React from 'react';
 
 const displayItem = (item, baseUrl) => {
-    return <li key={item}><a href={baseUrl + item.id} target="_blank" className="compound">{ drawImage(item.id, item.title)} <span className="text"><span className="id">{item.id}</span><span>{item.title}</span></span></a></li>
+    return <li key={item.id}><a href={baseUrl + item.id} target="_blank" className="compound">{ drawImage(item.id, item.title)} <span className="text"><span className="id">{item.id}</span><span>{item.title}</span></span></a></li>
 };
 
 const drawImage = (configId, title) => {
