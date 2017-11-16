@@ -204,7 +204,7 @@ class App extends Component {
                                         <h2>How to use / Steps</h2>
                                         <ol>
                                             <li>Select an environment (if not in the select box, type it in)</li>
-                                            <li>Type in a Config Id (or click on a Config ID from the list on the right)</li>
+                                            <li>Type in a Config ID (or click on a Config ID from the list on the right)</li>
                                             <li>Press the Enter key, or click the <strong>Launch</strong> button</li>
                                         </ol>
                                     </div>
@@ -225,7 +225,7 @@ class App extends Component {
                                             </div>
                                         </div>
 
-                                        <label>Config Id</label><span className="helper">Type in just the config ID eg. <span>2hwH09m</span></span>
+                                        <label>Config ID</label><span className="helper">Type in just the config ID eg. <span>2hwH09m</span></span>
                                         <input id="configId" onChange={this.onChangeConfigIdHandler} name="configId" className="form-control configId" />
 
                                         <p className="error display-none">Please provide a config ID to progress</p>
