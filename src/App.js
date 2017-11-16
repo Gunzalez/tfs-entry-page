@@ -79,11 +79,11 @@ class App extends Component {
         // launch demo site in new window
         if(configId.length > 0){
 
-            // open new window
-            window.location.assign(fullUrl);
-
             // add to local storage if not already in
             this.updateLocalHistoryList(fullUrl);
+
+            // open new window
+            window.location.assign(fullUrl);
 
             // reset values and states
             $configId.value = '';
@@ -120,7 +120,7 @@ class App extends Component {
         }
     };
 
-    updateLocalHistoryList(configId){
+    updateLocalHistoryList(configIdUrl){
         if (typeof(Storage) !== "undefined") {
 
             let localConfigIds = [];
@@ -128,11 +128,11 @@ class App extends Component {
                 localConfigIds = localStorage.getItem("localConfigIds").split('||');
             }
 
-            if(localConfigIds.indexOf(configId) !== -1){
-                let curIndex = localConfigIds.indexOf(configId);
+            if(localConfigIds.indexOf(configIdUrl) !== -1){
+                let curIndex = localConfigIds.indexOf(configIdUrl);
                 localConfigIds.splice(curIndex, 1);
             }
-            localConfigIds.unshift(configId);
+            localConfigIds.unshift(configIdUrl);
 
             if(localConfigIds.length > this.state.historyCount){
                 let amountToRemove = localConfigIds.length - this.state.historyCount;
@@ -140,9 +140,9 @@ class App extends Component {
             }
 
             localStorage.setItem("localConfigIds", localConfigIds.join('||'));
-            this.setState({
-                localConfigIds: localConfigIds
-            })
+            // this.setState({
+            //     localConfigIds: localConfigIds
+            // })
         }
     };
 
@@ -172,7 +172,11 @@ class App extends Component {
     };
 
     simpleListItem(item){
-        return <li key={item}><a href={item} target="_blank">{item}</a></li>
+        return (
+            <li key={item}>
+                <a href={item} onClick={()=>{this.updateLocalHistoryList(item)}}>{item}</a>
+            </li>
+        )
     };
 
     render() {
@@ -219,7 +223,7 @@ class App extends Component {
                                             </div>
                                         </div>
 
-                                        <label>Config ID</label><span className="helper">Type in just the config ID eg. <span>2hwH09m</span></span>
+                                        <label>Config ID</label><span className="helper">(type in just the config ID eg. <span>2hwH09m</span>)</span>
                                         <input id="configId" onChange={this.onChangeConfigIdHandler} name="configId" className="form-control configId" />
 
                                         <p className="error display-none">Please provide a config ID to progress</p>
@@ -235,7 +239,7 @@ class App extends Component {
                                         { this.state.localConfigIds.map(item => {
                                             return this.simpleListItem(item)
                                         })}
-                                        { this.state.localConfigIds.length < 1 ? <li>Empty list</li> : null }
+                                        { this.state.localConfigIds.length < 1 ? <li>This section will list previous visits in your history</li> : null }
                                     </ul>
                                 </div>
 

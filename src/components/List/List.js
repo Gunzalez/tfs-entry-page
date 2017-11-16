@@ -1,9 +1,33 @@
 import React from 'react';
 
+const updateLocalHistoryList = configIdUrl => {
+    if (typeof(Storage) !== "undefined") {
+
+        let localConfigIds = [];
+        if(localStorage.getItem("localConfigIds") !== null){
+            localConfigIds = localStorage.getItem("localConfigIds").split('||');
+        }
+
+        if(localConfigIds.indexOf(configIdUrl) !== -1){
+            let curIndex = localConfigIds.indexOf(configIdUrl);
+            localConfigIds.splice(curIndex, 1);
+        }
+        localConfigIds.unshift(configIdUrl);
+
+        // 10 should be from state in the main app, lazy
+        if(localConfigIds.length > 10){
+            let amountToRemove = localConfigIds.length - 10;
+            localConfigIds.splice((10 - 1), amountToRemove);
+        }
+
+        localStorage.setItem("localConfigIds", localConfigIds.join('||'));
+    }
+};
+
 const displayItem = (item, baseUrl) => {
     return (
         <li key={item.id}>
-                <a href={baseUrl + item.id} className="compound">
+                <a href={baseUrl + item.id} onClick={()=>{ updateLocalHistoryList(baseUrl + item.id)}} className="compound">
                 { drawImage(item.id, item.title)}
                 <span className="text">
                     <span className="id">{item.id}</span>
