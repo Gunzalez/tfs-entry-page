@@ -1,11 +1,7 @@
 import React from 'react';
 
-const displayItem = (i, item, baseUrl) => {
-    if(typeof item === "object"){
-        return <li key={i}><a href={baseUrl + item.id} target="_blank" className="compound">{ drawImage(item.id, item.title)} <span className="text"><span className="id">{item.id}</span><span>{item.title}</span></span></a></li>
-    } else {
-        return <li key={i}><a href={baseUrl + item} target="_blank">{item}</a></li>
-    }
+const displayItem = (item, baseUrl) => {
+    return <li key={item}><a href={baseUrl + item.id} target="_blank" className="compound">{ drawImage(item.id, item.title)} <span className="text"><span className="id">{item.id}</span><span>{item.title}</span></span></a></li>
 };
 
 const drawImage = (configId, title) => {
@@ -14,15 +10,14 @@ const drawImage = (configId, title) => {
 };
 
 const List = (props) => (
-    <div className="list">
+    <div className="list detailed">
         <h3 className="heading">{ props.title }</h3>
         { props.sub ? <p>Links launch in a new window or tab</p> : null }
         <hr/>
         <ul>
-            { props.items.map((item, i) => {
-                return displayItem(i, item, props.url)
+            { props.items.map(item => {
+                return displayItem(item, props.url)
             })}
-            { props.items.length < 1 ? <li>Empty list</li> : null }
         </ul>
     </div>
 );

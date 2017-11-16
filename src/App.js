@@ -10,12 +10,13 @@ class App extends Component {
     constructor(props){
         super(props);
         this.state = {
+            historyCount: 10,
             url: "",
             environments: [],
             presetConfigIds: [],
             localConfigIds: [],
             predefined: "Config ID examples",
-            locals: "10 most recent config IDs",
+            locals: "most recent config IDs",
 
         };
     }
@@ -85,7 +86,7 @@ class App extends Component {
             window.open(fullUrl);
 
             // add to local storage if not already in
-            this.updateLocateList(configId);
+            this.updateLocateList(fullUrl);
 
             // reset values and states
             $configId.value = '';
@@ -130,19 +131,21 @@ class App extends Component {
                 localConfigIds = localStorage.getItem("localConfigIds").split('||');
             }
 
-            if(localConfigIds.indexOf(configId) === -1){
-                localConfigIds.unshift(configId);
-
-                if(localConfigIds.length > 5){
-                    let amountToRemove = localConfigIds.length - 10;
-                    localConfigIds.splice(4, amountToRemove);
-                }
-
-                localStorage.setItem("localConfigIds", localConfigIds.join('||'));
-                this.setState({
-                    localConfigIds: localConfigIds
-                })
+            if(localConfigIds.indexOf(configId) !== -1){
+                let curIndex = localConfigIds.indexOf(configId);
+                localConfigIds.splice(curIndex, 1);
             }
+            localConfigIds.unshift(configId);
+
+            if(localConfigIds.length > this.state.historyCount){
+                let amountToRemove = localConfigIds.length - this.state.historyCount;
+                localConfigIds.splice((this.state.historyCount - 1), amountToRemove);
+            }
+
+            localStorage.setItem("localConfigIds", localConfigIds.join('||'));
+            this.setState({
+                localConfigIds: localConfigIds
+            })
         }
     };
 
@@ -171,6 +174,14 @@ class App extends Component {
         return <option key={item.url} value={item.url}>{item.name}</option>
     };
 
+    simpleListItem(item){
+        return <li key={item}><a href={item} target="_blank">{item}</a></li>
+    }
+
+    doStuff(thing){
+        alert(thing)
+    }
+
     render() {
         return (
             <div className="App">
@@ -188,7 +199,7 @@ class App extends Component {
                                         <label className="label">Config ID test page</label>
                                         <input value={this.state.url} onChange={this.onChangeBaseUrl.bind(this)} name="baseUrl" className="form-control baseUrl" />
                                         <select className="form-control environment" onChange={this.onChangeSelect.bind(this)}>
-                                            { this.state.environments.map((environment) => {
+                                            { this.state.environments.map(environment => {
                                                 return this.createListItem(environment)
                                             })}
                                         </select>
@@ -199,11 +210,20 @@ class App extends Component {
                                         <button name="btn-submit" className="btn btn-default btn-submit" disabled>Launch</button>
                                     </form>
                                 </div>
-                                <List title={this.state.locals} items={this.state.localConfigIds} url={this.state.url} />
+                                <div className="list simple">
+                                    <h3 className="heading">{ this.state.historyCount } { this.state.locals }</h3>
+                                    <hr/>
+                                    <ul>
+                                        { this.state.localConfigIds.map(item => {
+                                            return this.simpleListItem(item)
+                                        })}
+                                        { this.state.localConfigIds.length < 1 ? <li>Empty list</li> : null }
+                                    </ul>
+                                </div>
                                 { this.state.localConfigIds.length > 0 ? <p className="clearList"><a href="" onClick={this.clearLocalConfigIds.bind(this)}>Clear</a> this list.</p> : null }
                             </div>
                             <div className="col-6 col-md-4">
-                                <List title={this.state.predefined} sub={true} items={this.state.presetConfigIds} url={this.state.url} />
+                                <List title={this.state.predefined} sub={true} items={this.state.presetConfigIds} url={this.state.url} action={this.doStuff.bind(this)} />
                             </div>
                         </div>
                     </div>

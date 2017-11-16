@@ -68,7 +68,8 @@ label, .heading {
 }
 
 .heading {
-  font-size: 1.5em;
+  font-size: 1.4em;
+  font-weight: normal;
 }
 
 .helper span {
@@ -92,6 +93,12 @@ label, .heading {
   padding: 20px 0;
 }
 
+.list.simple {
+  background: #f0f0f0;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
 .list ul {
   padding: 0;
   margin: 0;
@@ -104,12 +111,17 @@ label, .heading {
 }
 
 .list li a {
-  display: block;
-  padding: 10px 12px;
+  padding: 10px 0;
   border-bottom: 1px solid #efefef;
   line-height: 100%;
-  text-decoration: none;
+  text-decoration: underline;
   transition: all 0.5s;
+}
+
+.list.detailed li a {
+  display: block;
+  padding: 10px 12px;
+  text-decoration: none;
   color: #666666;
 }
 
@@ -117,10 +129,16 @@ label, .heading {
   margin-bottom: 30px;
 }
 
-.list li a:hover {
+.list.detailed li a:hover {
   background: #d7d7d7;
   color: #000000;
 }
+
+.list.simple li a:hover {
+  text-decoration: none;
+}
+
+
 
 .configId,
 .environment {
