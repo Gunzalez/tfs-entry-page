@@ -16,6 +16,10 @@
   border-bottom: 1px solid #cccccc;
 }
 
+body {
+    margin-bottom: 50px;
+}
+
 .compound img {
   float: right;
   min-height: 59px;
@@ -30,6 +34,7 @@
 
 .text span {
   display: block;
+    line-height: 130%;
 }
 
 .compound span {
@@ -42,12 +47,9 @@
   font-family: 'TYB';
 }
 
-* {
-  line-height: 120%;
-}
-
 p {
-  margin-bottom: 8px;
+    margin: 0;
+    padding: 0 0 15px 0;
 }
 
 .form {
@@ -62,20 +64,33 @@ p {
   color: #666666;
 }
 
-label, .heading {
-  font-size: 2.2em;
-  font-weight: bold;
-  margin-bottom: 15px;
-  font-family: 'TYB';
+h1, h2, h3, h3, h5 {
+    font-family: 'TYB';
+    margin: 0;
+    padding: 0 0 15px 0;
 }
 
-.heading {
-  font-size: 1.4em;
-  font-weight: normal;
+h2 {
+    padding-top: 10px;
+}
+
+label {
+    font-family: 'TYB';
+    font-size: 1.4em;
+    display: inline-block;
+    padding-right: 10px;
+}
+
+.no-gutter-right {
+    padding-right: 2px;
+}
+
+.no-gutter-left {
+    padding-left: 3px;
 }
 
 .helper span {
-  text-decoration: underline;
+    color: #000000;
   font-weight: bold;
 }
 
@@ -93,6 +108,10 @@ label, .heading {
 
 .list {
   padding: 20px 0;
+}
+
+.list h2 {
+    padding-top: 0;
 }
 
 .list.simple {
@@ -131,6 +150,15 @@ label, .heading {
   font-size: 1.5em;
 }
 
+.form-control:focus {
+    box-shadow: none;
+}
+
+.detailed ul {
+    border-top: 1px solid #000000;
+    padding-top: 10px;
+}
+
 .list.detailed li a {
   display: block;
   padding: 10px 12px;
@@ -152,21 +180,31 @@ label, .heading {
   color: #000000;
 }
 
+.configId {
+    width: 235px;
+    display: block;
+    margin-bottom: 10px !important;
+}
 
-
-.configId,
 .environment {
-  width: 280px;
-  display: block;
-  margin-bottom: 15px;
+  margin-bottom: 10px !important;
+    width: 100%;
+}
+
+.no-gutter > [class*='col-'] {
+    padding-right:0;
+    padding-left:0;
 }
 
 .btn {
   cursor: pointer;
+    background: #e50000;
+    color: #ffffff;
+    transition: all 0.5s;
 }
 
 .btn:hover {
-  background: #999999;
+  background: #000000;
 }
 
 .btn[disabled],
@@ -175,19 +213,9 @@ label, .heading {
   cursor: default;
 }
 
-.baseUrl:focus {
-  box-shadow: none;
-  outline: none;
-  color: #111111;
-}
-
-.likeLabel {
-  color: #999999;
-}
-
 .baseUrl {
-  color: #999999;
-  width: 75%;
+  width: 100%;
+    margin-bottom: 30px !important;
 }
 
 .clearList {

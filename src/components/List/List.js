@@ -11,9 +11,9 @@ const drawImage = (configId, title) => {
 
 const List = (props) => (
     <div className="list detailed">
-        <h3 className="heading">{ props.title }</h3>
-        { props.sub ? <p>Links launch in a new window or tab</p> : null }
-        <hr/>
+        <h2>{ props.title }</h2>
+        <p>Click any preconfigured Config ID to start the TFS project</p>
+        <p>Environment currently set to:<br /><strong>{ props.url }</strong></p>
         <ul>
             { props.items.map(item => {
                 return displayItem(item, props.url)
