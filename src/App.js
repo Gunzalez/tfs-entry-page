@@ -227,7 +227,7 @@ class App extends Component {
                                         </div>
 
                                         <label>Config ID</label><span className="helper">(type in just the config ID eg. <span>2hwH09m</span>)</span>
-                                        <input id="configId" onChange={this.onChangeConfigIdHandler} name="configId" className="form-control configId" />
+                                        <input id="configId" onChange={this.onChangeConfigIdHandler} name="configId" defaultValue="" className="form-control configId" autoComplete="off" />
 
                                         <p className="error display-none">Please provide a config ID to progress</p>
                                         <button name="btn-submit" className="btn btn-default btn-submit" disabled>Launch</button>
