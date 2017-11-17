@@ -2,11 +2,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 A simple single page launching pad for the main TFS application
 
-Clone repo
-npm install
-npm start
-Marvel
+Simply clone the repo and use the following commands on your terminal
 
-- Find preset list of Config IDs /data/configids.json
-- Find base url string in app.js, in the component state
+- npm install
+- npm start
 
+See /data for content, use for editing Environments and Config ID examples

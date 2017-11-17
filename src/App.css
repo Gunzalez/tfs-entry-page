@@ -16,8 +16,15 @@
   border-bottom: 1px solid #cccccc;
 }
 
+body {
+    margin-bottom: 50px;
+    font-family: 'OSR';
+}
+
 .compound img {
   float: right;
+  min-height: 59px;
+  min-width: 100px;
 }
 
 .text {
@@ -28,6 +35,7 @@
 
 .text span {
   display: block;
+    line-height: 130%;
 }
 
 .compound span {
@@ -35,17 +43,15 @@
 }
 
 .compound span.id {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   font-family: 'TYB';
-}
-
-* {
-  line-height: 120%;
+    color: #000000;
 }
 
 p {
-  margin-bottom: 8px;
+    margin: 0;
+    padding: 0 0 15px 0;
 }
 
 .form {
@@ -60,19 +66,33 @@ p {
   color: #666666;
 }
 
-label, .heading {
-  font-size: 2.2em;
-  font-weight: bold;
-  margin-bottom: 15px;
-  font-family: 'TYB';
+h1, h2, h3, h3, h5 {
+    font-family: 'TYB';
+    margin: 0;
+    padding: 0 0 15px 0;
 }
 
-.heading {
-  font-size: 1.5em;
+h2 {
+    padding-top: 10px;
+}
+
+label {
+    font-family: 'TYB';
+    font-size: 1.4em;
+    display: inline-block;
+    padding-right: 10px;
+}
+
+.no-gutter-right {
+    padding-right: 2px;
+}
+
+.no-gutter-left {
+    padding-left: 3px;
 }
 
 .helper span {
-  text-decoration: underline;
+    color: #000000;
   font-weight: bold;
 }
 
@@ -92,10 +112,19 @@ label, .heading {
   padding: 20px 0;
 }
 
+.list h2 {
+    padding-top: 0;
+}
+
+.list.simple {
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+
 .list ul {
   padding: 0;
   margin: 0;
-  font-size: 1.1em;
   list-style: none;
 }
 
@@ -103,13 +132,47 @@ label, .heading {
   padding: 0;
 }
 
+.simple .heading {
+  border-bottom: 1px solid #cccccc;
+  padding-bottom: 15px;
+  margin-bottom: 10px;
+}
+
 .list li a {
-  display: block;
-  padding: 10px 12px;
+  padding: 10px 0;
   border-bottom: 1px solid #efefef;
   line-height: 100%;
-  text-decoration: none;
+  text-decoration: underline;
   transition: all 0.5s;
+  display: block;
+}
+
+.list li a span.id  {
+  font-size: 1.5em;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.detailed ul {
+    border-top: 1px solid #cccccc;
+    padding-top: 10px;
+}
+
+strong {
+    font-family: 'OSB';
+    color: #000000;
+}
+
+ol {
+    margin-bottom: 30px;
+}
+
+.list.detailed li a {
+  display: block;
+  padding: 10px 12px;
+  text-decoration: none;
   color: #666666;
 }
 
@@ -117,24 +180,41 @@ label, .heading {
   margin-bottom: 30px;
 }
 
-.list li a:hover {
-  background: #d7d7d7;
+.list.detailed li a:hover {
+  background: #f1f1f1;
   color: #000000;
 }
 
-.configId,
+.list.simple li a:hover {
+  text-decoration: none;
+  color: #000000;
+}
+
+.configId {
+    width: 235px;
+    display: block;
+    margin-bottom: 10px !important;
+}
+
 .environment {
-  width: 280px;
-  display: block;
-  margin-bottom: 15px;
+  margin-bottom: 10px !important;
+    width: 100%;
+}
+
+.no-gutter > [class*='col-'] {
+    padding-right:0;
+    padding-left:0;
 }
 
 .btn {
   cursor: pointer;
+    background: #e50000;
+    color: #ffffff;
+    transition: all 0.5s;
 }
 
 .btn:hover {
-  background: #999999;
+  background: #000000;
 }
 
 .btn[disabled],
@@ -143,18 +223,9 @@ label, .heading {
   cursor: default;
 }
 
-.baseUrl:focus {
-  box-shadow: none;
-  outline: none;
-  color: #111111;
-}
-
-.likeLabel {
-  color: #999999;
-}
-
 .baseUrl {
-  color: #999999;
+  width: 100%;
+    margin-bottom: 30px !important;
 }
 
 .clearList {
