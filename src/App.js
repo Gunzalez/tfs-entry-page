@@ -195,10 +195,13 @@ class App extends Component {
                                 {/* Form */}
                                 <div classID="theForm" className="form">
 
-                                    <h1>TFS Entry page</h1>
+                                    <h1>Entry page</h1>
                                     <div className="intro">
-                                        <p>Provides access to the start of the project on the various environments as they become available. It is simply a shortcut to the main TFS project but <strong>not part of the project</strong>.</p>
-                                            <p>Ideal for internal use like sharing and testing, but <strong>will be used by the client</strong> too and so this stops the client needing to type into the browser location bar.</p>
+                                        <p>Provides access to the start of the project on the various environments as they become available.
+                                            It is simply a shortcut to the main TFS project but <strong>not part of the project</strong>.</p>
+
+                                        <p>Ideal for internal use like sharing and testing, but <strong>will be used by the client</strong> too and so
+                                            this stops the client needing to type into the browser location bar.</p>
                                         <h2>How to use / Steps</h2>
                                         <ol>
                                             <li>Select an environment (if not in the select box, type it in)</li>

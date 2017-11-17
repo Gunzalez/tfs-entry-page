@@ -165,6 +165,10 @@ strong {
     color: #000000;
 }
 
+ol {
+    margin-bottom: 30px;
+}
+
 .list.detailed li a {
   display: block;
   padding: 10px 12px;

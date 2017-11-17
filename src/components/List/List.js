@@ -46,7 +46,7 @@ const drawImage = (configId, title) => {
 const List = (props) => (
     <div className="list detailed">
         <h3>Config ID examples</h3>
-        <p>Click any preconfigured Config IDs to start the TFS project</p>
+        <p>Click on a preconfigured Config ID to start the TFS journey</p>
         <p>Environment currently set to:<br /><strong>{ props.url }</strong></p>
         <ul>
             { props.items.map(item => {
