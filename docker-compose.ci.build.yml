@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  ci-build:
+    image: node:8.9
+    volumes:
+      - .:/src
+    working_dir: /src
+    command: echo Npm container

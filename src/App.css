@@ -3,6 +3,7 @@
 .header {
   padding: 15px 0;
   border-bottom: 1px solid #cccccc;
+    background: #ffffff;
 }
 
 .list li a.compound {
@@ -19,35 +20,20 @@
 body {
     margin-bottom: 50px;
     font-family: 'OSR';
+    background: #f0f0f0;
 }
 
 .compound img {
-  float: right;
   min-height: 59px;
   min-width: 100px;
+    display: block;
 }
 
-.text {
-  position: absolute;
-  left: 15px;
-  top: 15px;
+
+.form-control {
+    margin-bottom: 10px;
 }
 
-.text span {
-  display: block;
-    line-height: 130%;
-}
-
-.compound span {
-  margin-bottom: 5px;
-}
-
-.compound span.id {
-  font-size: 14px;
-  font-weight: bold;
-  font-family: 'TYB';
-    color: #000000;
-}
 
 p {
     margin: 0;
@@ -66,19 +52,25 @@ p {
   color: #666666;
 }
 
-h1, h2, h3, h3, h5 {
-    font-family: 'TYB';
+h1 {
+    font-size: 2.0rem;
+}
+
+h1, h2 {
+    font-family: 'TYR';
     margin: 0;
     padding: 0 0 15px 0;
 }
 
-h2 {
+h3, h4, h5 {
     padding-top: 10px;
+    font-size: 16px;
+    font-family: 'TYR';
 }
 
 label {
-    font-family: 'TYB';
-    font-size: 1.4em;
+    font-family: 'TYR';
+    font-size: 1.3em;
     display: inline-block;
     padding-right: 10px;
 }
@@ -109,7 +101,7 @@ label {
 }
 
 .list {
-  padding: 20px 0;
+  padding: 0;
 }
 
 .list h2 {
@@ -117,7 +109,7 @@ label {
 }
 
 .list.simple {
-  padding: 0;
+  padding: 20px 0 0 0;
   margin-bottom: 15px;
 }
 
@@ -130,16 +122,41 @@ label {
 
 .list li {
   padding: 0;
+    font-size: 14px;
+}
+
+.copy-box {
+    padding-right: 100px;
+    padding-bottom: 20px;
+}
+
+.btn-clear {
+    display: inline !important;
+    font-size: 14px;
+    width: auto;
+    cursor: pointer;
+    transition: background 0.33s;
+}
+
+.btn-clear:hover {
+    background: #efefef;
 }
 
 .simple .heading {
   border-bottom: 1px solid #cccccc;
   padding-bottom: 15px;
   margin-bottom: 10px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.baseUrl-text {
+    font-size: 20px;
+    padding-top: 4px;
 }
 
 .list li a {
-  padding: 10px 0;
+  padding: 7px 0;
   border-bottom: 1px solid #efefef;
   line-height: 100%;
   text-decoration: underline;
@@ -147,42 +164,87 @@ label {
   display: block;
 }
 
-.list li a span.id  {
-  font-size: 1.5em;
-}
-
 .form-control:focus {
     box-shadow: none;
 }
 
-.detailed ul {
-    border-top: 1px solid #cccccc;
-    padding-top: 10px;
+.single-config {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+hr {
+    border-color: #cccccc;
+    margin-top: 1.5em;
+}
+
+.single-config a {
+    background: #ffffff;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 10px 15px;
+    text-align: center;
+    border: 1px solid #ededed;
+    border-radius: 4px;
+    transition: border 0.25s;
+}
+
+
+.single-config a:hover {
+    border: 1px solid #e0e0e0;
+}
+
+.bespoke-config-id {
+    border: 1px solid #cccccc;
+    padding: 10px 15px;
+    margin-top: -5px;
+}
+
+.bespoke-config-id .form-control {
+    display: inline;
+}
+
+.fields {
+    display: block;
+}
+
+
+.single-config img {
+    display: block;
+    margin: 0 auto 5px auto;
+}
+
+.single-config a:hover {
+    text-decoration: none;
+}
+
+span.id {
+    font-family: 'TYR';
+}
+
+span.detail {
+    margin-bottom: 5px;
+    color: #000000;
+    font-size: 14px;
+    display: block;
+}
+
+.single-config a:hover .id {
+    text-decoration: underline;
+}
+
+span.detail {
+    text-decoration: none;
+}
+
+.btn-submit {
+    margin-left: -5px;
 }
 
 strong {
     font-family: 'OSB';
     color: #000000;
-}
-
-ol {
-    margin-bottom: 30px;
-}
-
-.list.detailed li a {
-  display: block;
-  padding: 10px 12px;
-  text-decoration: none;
-  color: #666666;
-}
-
-.btn-submit {
-  margin-bottom: 30px;
-}
-
-.list.detailed li a:hover {
-  background: #f1f1f1;
-  color: #000000;
 }
 
 .list.simple li a:hover {
@@ -221,11 +283,11 @@ ol {
 .btn[disabled]:hover {
   background: #cccccc;
   cursor: default;
+    opacity: 1 !important;
 }
 
 .baseUrl {
   width: 100%;
-    margin-bottom: 30px !important;
 }
 
 .clearList {
@@ -236,3 +298,6 @@ ol {
   margin-bottom: 15px;
 }
 
+div + label {
+    margin-top: 15px;
+}

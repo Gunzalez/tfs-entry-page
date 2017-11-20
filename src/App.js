@@ -9,13 +9,19 @@ class App extends Component {
 
     constructor(props){
         super(props);
+
         this.state = {
             historyCount: 10,
             url: "",
+            envName: "",
             environments: [],
             presetConfigIds: [],
             localConfigIds: []
         };
+
+        this.onChangeBaseUrl = this.onChangeBaseUrl.bind(this);
+        this.launchSite = this.launchSite.bind(this);
+        this.clearLocalConfigIds = this.clearLocalConfigIds.bind(this);
     }
 
     componentDidMount(){
@@ -49,11 +55,19 @@ class App extends Component {
                 return response.json()
             })
             .then(array => {
-                let firstENV = array[0].url;
+                let firstENV = array[0].url,
+                    firstEnvName = array[0].name;
+
                 this.setState({
                     environments: array,
-                    url: firstENV
+                    url: firstENV,
+                    envName: firstEnvName
                 });
+
+                // local storage
+                if (typeof(Storage) !== "undefined") {
+                    localStorage.setItem("storedEnv", firstEnvName);
+                }
             })
             .catch(function(err){
                 console.log(err);
@@ -99,13 +113,6 @@ class App extends Component {
         // removes focus from button
         $configId.focus();
     };
-
-    onChangeBaseUrl(event){
-        let newBaseUrl = event.target.value;
-        this.setState({
-            url: newBaseUrl
-        })
-    }
 
     onChangeConfigIdHandler(event){
         let $form = document.getElementsByTagName('form')[0],
@@ -156,20 +163,23 @@ class App extends Component {
         }
     };
 
-    onChangeSelect(event){
+    onChangeBaseUrl(event){
         let $form = document.getElementsByTagName('form')[0],
             $select = event.target,
             $baseUrl = $form["baseUrl"];
 
+        let envName = $select.options[$select.selectedIndex].text;
         $baseUrl.value = $select.value;
         this.setState({
-            url: $select.value
+            url: $select.value,
+            envName: envName
         });
-    }
 
-    createListItem(item){
-        return <option key={item.url} value={item.url}>{item.name}</option>
-    };
+        // local storage
+        if (typeof(Storage) !== "undefined") {
+            localStorage.setItem("storedEnv", envName);
+        }
+    }
 
     simpleListItem(item){
         return (
@@ -190,70 +200,85 @@ class App extends Component {
                 <div className="body">
                     <div className="container">
                         <div className="row">
-                            <div className="col-12 col-sm-6 col-md-8">
+                            <div className="col-md-9">
 
                                 {/* Form */}
                                 <div classID="theForm" className="form">
 
-                                    <h1>Entry page</h1>
-                                    <div className="intro">
-                                        <p>Provides access to the start of the project on the various environments as they become available.
-                                            It is simply a shortcut to the main TFS project but <strong>not part of the project</strong>.</p>
-
-                                        <p>Ideal for internal use like sharing and testing, but <strong>will be used by the client</strong> too and so
-                                            this stops the client needing to type into the browser location bar.</p>
-                                        <h2>How to use / Steps</h2>
-                                        <ol>
-                                            <li>Select an environment (if not in the select box, type it in)</li>
-                                            <li>Type in a Config ID (or click on a Config ID from the list on the right)</li>
-                                            <li>Press the Enter key, or click the <strong>Launch</strong> button</li>
-                                        </ol>
+                                    <div className="copy-box">
+                                        <h1>Entry page</h1>
+                                        <p>Provides access to the start of the project on the various environments as they become available. It is simply a shortcut to the main TFS project but <strong>not part of the project</strong>.</p>
+                                        <p>Ideal for internal use like sharing and testing, it will be <strong>used by the client</strong> too and so this stops the client needing to type into the browser location bar.</p>
                                     </div>
 
-                                    <form onSubmit={this.launchSite.bind(this)} autoComplete="off">
+                                    <form onSubmit={this.launchSite} autoComplete="off">
 
-                                        <label>Environment</label>
+                                        <label><span>1.</span> Select an environment</label>
                                         <div className="row">
-                                            <div className="col-sm-4 no-gutter-right">
-                                                <select className="form-control environment" onChange={this.onChangeSelect.bind(this)}>
+                                            <div className="col-sm-4">
+                                                <select className="form-control environment" value={this.state.url} onChange={this.onChangeBaseUrl}>
                                                     { this.state.environments.map(environment => {
-                                                        return this.createListItem(environment)
+                                                        return (
+                                                            <option key={environment.url} defaultValue={environment.url} value={environment.url}>
+                                                                {environment.name}
+                                                            </option>
+                                                        )
                                                     })}
                                                 </select>
                                             </div>
-                                            <div className="col-sm-8 no-gutter-left">
-                                                <input value={this.state.url} onChange={this.onChangeBaseUrl.bind(this)} name="baseUrl" className="form-control baseUrl" />
+                                            <div className="col-sm-8">
+                                                <p className="baseUrl-text">{this.state.url}</p>
+                                                <input value={this.state.url} type="hidden" name="baseUrl" className="form-control baseUrl" />
                                             </div>
                                         </div>
 
-                                        <label>Config ID</label><span className="helper">(type in just the config ID eg. <span>2hwH09m</span>)</span>
-                                        <input id="configId" onChange={this.onChangeConfigIdHandler} name="configId" defaultValue="" className="form-control configId" autoComplete="off" />
 
-                                        <p className="error display-none">Please provide a config ID to progress</p>
-                                        <button name="btn-submit" className="btn btn-default btn-submit" disabled>Launch</button>
+                                        <hr />
+
+                                        {/* List component */}
+                                        <label><span>2.</span> Choose a Config ID to view on <strong>{ this.state.envName }</strong></label>
+                                        <List items={this.state.presetConfigIds} url={this.state.url} />
+
+                                        <div className="bespoke-config-id">
+                                            <label>Or type in a Config ID to view on <strong>{ this.state.envName }</strong></label>
+                                            <div className="fields">
+                                                <div className="row">
+                                                    <div className="col-md-4">
+                                                        <input id="configId" onChange={this.onChangeConfigIdHandler} placeholder="e.g. 2hwH09m" name="configId" defaultValue="" className="form-control configId" autoComplete="off" />
+                                                        <p className="error display-none">Please provide a config ID to progress</p>
+                                                    </div>
+                                                    <div className="col-md-8">
+                                                        <button name="btn-submit" className="btn btn-default btn-submit" disabled>Launch</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                       
+                                        
+
+
+                                        </div>
 
                                     </form>
+
                                 </div>
+
+                            </div>
+                            <div className="col-md-3">
 
                                 {/* List */}
                                 <div className="list simple">
-                                    <h3 className="heading">{ this.state.historyCount } most recent config IDs</h3>
+                                    <h4 className="heading">Your {this.state.historyCount} most recent Config IDs</h4>
                                     <ul>
                                         { this.state.localConfigIds.map(item => {
                                             return this.simpleListItem(item)
                                         })}
-                                        { this.state.localConfigIds.length < 1 ? <li>This section will list previous visits in your history, it's empty right now.</li> : null }
+                                        { this.state.localConfigIds.length < 1 ? <li>A list of previously visits, it is empty right now.</li> : null }
                                     </ul>
                                 </div>
 
                                 {/* Link to clear the list */}
-                                { this.state.localConfigIds.length > 0 ? <p className="clearList"><a href="" onClick={this.clearLocalConfigIds.bind(this)}>Clear</a> this list.</p> : null }
-
-                            </div>
-                            <div className="col-6 col-md-4">
-
-                                {/* List component */}
-                                <List items={this.state.presetConfigIds} url={this.state.url} />
+                                { this.state.localConfigIds.length > 0 ? <button className="form-control btn-clear" onClick={this.clearLocalConfigIds}>Clear history</button> : null }
 
                             </div>
                         </div>

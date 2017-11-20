@@ -1,22 +1,14 @@
 [
     {
-        "name": "PETER'S BOX",
+        "name": "DEV",
         "url": "http://18.195.38.29/"
     },
     {
-        "name": "DEV SERVER",
-        "url": "http://www.google.com/"
-    },
-    {
-        "name": "UAT I",
+        "name": "UAT",
         "url": "http://www.facebook.com/"
     },
     {
-        "name": "UAT II",
-        "url": "http://www.twitter.com/"
-    },
-    {
-        "name": "TOYOTA LIVE",
-        "url": "https://www.toyota.no/tfs/"
+        "name": "PROD",
+        "url": "https://www.google.com/"
     }
 ]
