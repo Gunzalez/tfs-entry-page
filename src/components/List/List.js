@@ -26,15 +26,13 @@ const updateLocalHistoryList = configIdUrl => {
 
 const displayItem = (item, baseUrl) => {
     return (
-        <li key={item.id}>
-                <a href={baseUrl + item.id} onClick={()=>{ updateLocalHistoryList(baseUrl + item.id)}} className="compound">
+        <div className="col-sm-4 single-config" key={item.id}>
+            <a href={baseUrl + item.id} onClick={()=>{ updateLocalHistoryList(baseUrl + item.id)}} className="compound">
                 { drawImage(item.id, item.title)}
-                <span className="text">
-                    <span className="id">{item.id}</span>
-                    <span>{item.title}</span>
-                </span>
+                <span className="id">{item.id}</span>
+                <span className="detail">{item.title}</span>
             </a>
-        </li>
+        </div>
     )
 };
 
@@ -44,15 +42,10 @@ const drawImage = (configId, title) => {
 };
 
 const List = (props) => (
-    <div className="list detailed">
-        <h3>Config ID examples</h3>
-        <p>Click on a preconfigured Config ID to start the TFS journey</p>
-        <p>Environment currently set to:<br /><strong>{ props.url }</strong></p>
-        <ul>
-            { props.items.map(item => {
-                return displayItem(item, props.url)
-            })}
-        </ul>
+    <div className="row list detailed">
+        { props.items.map(item => {
+            return displayItem(item, props.url)
+        })}
     </div>
 );
 

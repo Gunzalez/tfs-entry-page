@@ -3,6 +3,7 @@
 .header {
   padding: 15px 0;
   border-bottom: 1px solid #cccccc;
+    background: #ffffff;
 }
 
 .list li a.compound {
@@ -19,35 +20,20 @@
 body {
     margin-bottom: 50px;
     font-family: 'OSR';
+    background: #f0f0f0;
 }
 
 .compound img {
-  float: right;
   min-height: 59px;
   min-width: 100px;
+    display: block;
 }
 
-.text {
-  position: absolute;
-  left: 15px;
-  top: 15px;
+
+.form-control {
+    margin-bottom: 10px;
 }
 
-.text span {
-  display: block;
-    line-height: 130%;
-}
-
-.compound span {
-  margin-bottom: 5px;
-}
-
-.compound span.id {
-  font-size: 14px;
-  font-weight: bold;
-  font-family: 'TYB';
-    color: #000000;
-}
 
 p {
     margin: 0;
@@ -66,18 +52,19 @@ p {
   color: #666666;
 }
 
-h1, h2, h3, h3, h5 {
+h1, h2 {
     font-family: 'TYB';
     margin: 0;
     padding: 0 0 15px 0;
 }
 
-h2 {
+h3, h4, h5 {
     padding-top: 10px;
+    font-size: 16px;
 }
 
 label {
-    font-family: 'TYB';
+    font-family: 'OSR';
     font-size: 1.4em;
     display: inline-block;
     padding-right: 10px;
@@ -109,7 +96,7 @@ label {
 }
 
 .list {
-  padding: 20px 0;
+  padding: 0;
 }
 
 .list h2 {
@@ -117,7 +104,7 @@ label {
 }
 
 .list.simple {
-  padding: 0;
+  padding: 20px 0 0 0;
   margin-bottom: 15px;
 }
 
@@ -130,16 +117,36 @@ label {
 
 .list li {
   padding: 0;
+    font-size: 14px;
+}
+
+.copy-box {
+    padding-right: 100px;
+    padding-bottom: 20px;
+}
+
+.btn-clear {
+    display: inline !important;
+    font-size: 14px;
+    width: auto;
+
 }
 
 .simple .heading {
   border-bottom: 1px solid #cccccc;
   padding-bottom: 15px;
   margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.baseUrl-text {
+    font-size: 20px;
+    padding-top: 3px;
 }
 
 .list li a {
-  padding: 10px 0;
+  padding: 7px 0;
   border-bottom: 1px solid #efefef;
   line-height: 100%;
   text-decoration: underline;
@@ -156,8 +163,71 @@ label {
 }
 
 .detailed ul {
-    border-top: 1px solid #cccccc;
-    padding-top: 10px;
+    float: left;
+    width: 100%;
+}
+
+.single-config {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+hr {
+    border-color: #cccccc;
+    margin-top: 1.5em;
+}
+
+.single-config a {
+    background: #ffffff;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 10px 15px;
+    text-align: center;
+    border: 1px solid #cccccc;
+}
+
+.bespoke-config-id {
+    border: 1px solid #cccccc;
+    padding: 10px 15px;
+    margin-top: -5px;
+}
+
+.bespoke-config-id .form-control {
+    display: inline;
+}
+
+.fields {
+    display: block;
+}
+
+
+.single-config img {
+    display: block;
+    margin: 0 auto 5px auto;
+}
+
+.single-config a:hover {
+    text-decoration: none;
+}
+
+span.detail {
+    margin-bottom: 5px;
+    color: #000000;
+    font-size: 12px;
+    display: block;
+}
+
+.single-config a:hover .id {
+    text-decoration: underline;
+}
+
+span.detail {
+    text-decoration: none;
+}
+
+.btn-submit {
+    margin-left: -5px;
 }
 
 strong {
@@ -174,10 +244,6 @@ ol {
   padding: 10px 12px;
   text-decoration: none;
   color: #666666;
-}
-
-.btn-submit {
-  margin-bottom: 30px;
 }
 
 .list.detailed li a:hover {
@@ -221,11 +287,11 @@ ol {
 .btn[disabled]:hover {
   background: #cccccc;
   cursor: default;
+    opacity: 1 !important;
 }
 
 .baseUrl {
   width: 100%;
-    margin-bottom: 30px !important;
 }
 
 .clearList {
@@ -236,3 +302,6 @@ ol {
   margin-bottom: 15px;
 }
 
+div + label {
+    margin-top: 15px;
+}
