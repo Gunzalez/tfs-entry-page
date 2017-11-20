@@ -232,6 +232,7 @@ class App extends Component {
                                             </div>
                                         </div>
 
+
                                         <hr />
 
                                         {/* List component */}
@@ -251,6 +252,10 @@ class App extends Component {
                                                     </div>
                                                 </div>
                                             </div>
+
+                                       
+                                        
+
 
                                         </div>
 
